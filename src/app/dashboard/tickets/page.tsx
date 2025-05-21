@@ -14,6 +14,10 @@ type Ticket = {
   lastUpdated: string;
 };
 
+// تابع تبدیل اعداد انگلیسی به فارسی
+const toFaDigit = (val: string | number) =>
+  String(val).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[+d]);
+
 export default function TicketsPage() {
   // این دیتا در حالت واقعی از API دریافت می‌شود
   const [tickets, setTickets] = useState<Ticket[]>([
@@ -73,15 +77,15 @@ export default function TicketsPage() {
           >
             <div className="flex justify-between items-start mb-3">
               <h3 className="font-medium">{ticket.title}</h3>
-              <span className="text-gray-500 text-sm">#{ticket.id}</span>
+              <span className="text-gray-500 text-sm">#{toFaDigit(ticket.id)}</span>
             </div>
             <div className="flex flex-wrap gap-2 mb-3">
               <TicketStatusBadge status={ticket.status} />
               <TicketDepartmentBadge department={ticket.department} />
             </div>
             <div className="text-sm text-gray-500 flex justify-between">
-              <span>ایجاد: {ticket.createdAt}</span>
-              <span>بروزرسانی: {ticket.lastUpdated}</span>
+              <span>ایجاد: {toFaDigit(ticket.createdAt)}</span>
+              <span>بروزرسانی: {toFaDigit(ticket.lastUpdated)}</span>
             </div>
           </div>
         ))}
@@ -117,7 +121,7 @@ export default function TicketsPage() {
               {tickets.map((ticket) => (
                 <tr key={ticket.id} className="hover:bg-gray-50 cursor-pointer touch-manipulation" onClick={() => window.location.href = `/dashboard/tickets/${ticket.id}`}>
                   <td className="px-4 md:px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {ticket.id}
+                    {toFaDigit(ticket.id)}
                   </td>
                   <td className="px-4 md:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {ticket.title}
@@ -129,10 +133,10 @@ export default function TicketsPage() {
                     <TicketDepartmentBadge department={ticket.department} />
                   </td>
                   <td className="px-4 md:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {ticket.createdAt}
+                    {toFaDigit(ticket.createdAt)}
                   </td>
                   <td className="px-4 md:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {ticket.lastUpdated}
+                    {toFaDigit(ticket.lastUpdated)}
                   </td>
                 </tr>
               ))}

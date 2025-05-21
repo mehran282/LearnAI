@@ -26,6 +26,10 @@ type TicketDetail = {
   messages: TicketMessage[];
 };
 
+// تابع تبدیل اعداد انگلیسی به فارسی
+const toFaDigit = (val: string | number) =>
+  String(val).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[+d]);
+
 export default function TicketDetailPage() {
   const { id } = useParams();
   const ticketId = Array.isArray(id) ? id[0] : id;
@@ -108,14 +112,14 @@ export default function TicketDetailPage() {
             بازگشت به لیست تیکت‌ها
           </span>
         </Link>
-        <h1 className="text-lg md:text-xl font-bold">تیکت شماره {ticket.id}</h1>
+        <h1 className="text-lg md:text-xl font-bold">تیکت شماره {toFaDigit(ticket.id)}</h1>
       </div>
 
       <div className="bg-white rounded-lg shadow p-4 md:p-6">
         <div className="border-b pb-3 md:pb-4 mb-3 md:mb-4">
           <h2 className="text-lg md:text-xl font-bold mb-2">{ticket.title}</h2>
           <div className="flex flex-wrap gap-2 text-sm">
-            <span className="text-gray-600">تاریخ ایجاد: {ticket.createdAt}</span>
+            <span className="text-gray-600">تاریخ ایجاد: {toFaDigit(ticket.createdAt)}</span>
             <span className="mx-2 hidden sm:inline-block">•</span>
             <TicketStatusBadge status={ticket.status} />
             <span className="mx-2 hidden sm:inline-block">•</span>
@@ -131,7 +135,7 @@ export default function TicketDetailPage() {
                 isAdmin={msg.isAdmin}
                 message={msg.message}
                 sender={msg.sender}
-                date={msg.date}
+                date={toFaDigit(msg.date)}
               />
             ))}
           </div>
