@@ -55,7 +55,7 @@ export default function Dashboard() {
       description: 'مدیریت تیکت‌های پشتیبانی',
       link: '/dashboard/tickets',
       count: 3,
-      color: 'from-blue-500 to-blue-600',
+      color: 'text-blue-600',
       bgColor: 'bg-blue-50',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -68,7 +68,7 @@ export default function Dashboard() {
       description: 'مشاهده دوره‌های در حال یادگیری',
       link: '/dashboard/courses',
       count: 5,
-      color: 'from-green-500 to-green-600',
+      color: 'text-green-600',
       bgColor: 'bg-green-50',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,11 +81,11 @@ export default function Dashboard() {
       description: 'شرکت در آزمون‌های آنلاین',
       link: '/dashboard/exams',
       count: 2,
-      color: 'from-purple-500 to-purple-600',
+      color: 'text-purple-600',
       bgColor: 'bg-purple-50',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
         </svg>
       )
     },
@@ -133,7 +133,7 @@ export default function Dashboard() {
 
       <div className="space-y-6">
         {/* بخش خوشامدگویی */}
-        <div className="bg-gradient-to-l from-purple-600 to-blue-700 text-white p-4 md:p-6 rounded-2xl shadow-md">
+        <div className="bg-purple-500 text-white p-4 md:p-6 rounded-2xl shadow-md">
           <div className="flex justify-between items-center">
             <div>
               <h1 className="text-xl md:text-2xl font-bold mb-2">سلام، خوش آمدید 👋</h1>
@@ -148,7 +148,7 @@ export default function Dashboard() {
               </p>
             </div>
             <div className="hidden md:block">
-              <svg className="w-20 h-20 text-blue-200 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-20 h-20 text-white opacity-25" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </div>
@@ -165,17 +165,15 @@ export default function Dashboard() {
             >
               <div className="flex justify-between items-start">
                 <div className="flex items-center">
-                  <div className={`${card.bgColor} p-3 rounded-xl mr-4`}>
-                    <div className={`text-gradient bg-gradient-to-r ${card.color}`}>
-                      {card.icon}
-                    </div>
+                  <div className={`${card.bgColor} p-3 rounded-xl mr-4 ${card.color}`}>
+                    {card.icon}
                   </div>
                   <div>
                     <h2 className="text-lg font-bold mb-1 group-hover:text-purple-600 transition-colors">{card.title}</h2>
                     <p className="text-gray-500 text-sm">{card.description}</p>
                   </div>
                 </div>
-                <div className={`bg-gradient-to-r ${card.color} text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold shrink-0`}>
+                <div className={`${card.bgColor} ${card.color} w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold shrink-0`}>
                   {toFaDigit(card.count)}
                 </div>
               </div>
